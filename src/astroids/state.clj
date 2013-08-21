@@ -1,7 +1,6 @@
 (ns astroids.state)
 
 (defn world [state]
-  (println state)
   state)
 
 (defn ship [state]

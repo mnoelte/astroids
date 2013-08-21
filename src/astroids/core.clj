@@ -26,7 +26,8 @@
   (quil/background 0)
   (quil/stroke 255)
   (quil/stroke-weight 2)
-  (quil/fill 0))
+  (quil/fill 0)
+  (quil/rect-mode :center))
 
 (defn tick []
   (swap! game
@@ -39,7 +40,8 @@
       draw/world
       draw/ship
       draw/lasers
-      draw/asteroids))
+      draw/asteroids
+      ))
 
 (defn press []
   (when-let [k (key-map (quil/key-code))]
@@ -52,9 +54,7 @@
 (quil/defsketch astroids
                 :title "astroids"
                 :size [width height]
-                :renderer :opengl
                 :setup setup
                 :draw tick
                 :key-pressed press
                 :key-released release)
-

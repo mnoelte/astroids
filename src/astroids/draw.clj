@@ -11,8 +11,8 @@
   (let [r 0
         [x y] (get-in state [:player :position])]
     (quil/with-translation [x y]
-                           (quil/with-rotation [r]
-                                               (quil/triangle 0 0 5 -15 10 0))))
+      (quil/with-rotation [r]
+        (quil/triangle 0 0 5 -15 10 0))))
   state)
 
 (defn len [v]
@@ -34,9 +34,7 @@
 
 (defn asteroids [state]
   (doseq [{[x y] :position size :size} (:asteroids state)]
-    (quil/with-translation [x y 0]
-                           (quil/push-matrix)
-                           (quil/rotate-x (quil/radians (/ (quil/millis) 10)))
-                           (quil/sphere size)
-                           (quil/pop-matrix)))
+    (quil/with-translation [x y]
+      (quil/with-rotation [(quil/radians (/ (quil/millis) 10))]
+        (quil/rect 0 0 size size))))
   state)

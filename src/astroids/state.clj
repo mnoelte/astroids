@@ -25,7 +25,7 @@
 
 (deftrans trans  [state]
   [[((:buttons state) :left)  (update state [:player :angle]  #(+ 0.1 %))]
-   [((:buttons state) :right) (update state [:player :angle]  #(- 0.1 %))]
+   [((:buttons state) :right) (update state [:player :angle]  #(+ 6.182 %))]
    [((:buttons state) :space)
     (assoc-in state [:player :velocity]
               (mapv + (mapv * [0.1 0.1] [(Math/cos (:angle (:player state)))

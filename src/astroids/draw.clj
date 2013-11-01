@@ -8,7 +8,7 @@
   state)
 
 (defn ship [state]
-  (let [r 0
+  (let [r (+ (/ Math/PI 2) (get-in state [:player :angle]))
         [x y] (get-in state [:player :position])]
     (quil/with-translation [x y]
       (quil/with-rotation [r]

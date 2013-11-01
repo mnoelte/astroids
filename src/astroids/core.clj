@@ -11,6 +11,7 @@
               39 :right})
 
 (def game (atom {:player {:position [(/ width 2) (/ height 2)]
+                          :angle 0
                           :velocity [0 0]}
                  :lasers []
                  :asteroids (take 3 (repeatedly (fn [] {:position [(rand-int width) (rand-int height)]

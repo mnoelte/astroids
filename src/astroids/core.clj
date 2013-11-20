@@ -7,16 +7,26 @@
 (def height 400)
 
 (def key-map {32 :space
+              40 :down
               37 :left
+              38 :up
               39 :right})
 
 (def game (atom {:player {:position [(/ width 2) (/ height 2)]
                           :angle 0
                           :velocity [0 0]}
-                 :lasers []
+                  :lasers []
+
+; X STUERZT AB:
+;                 :lasers [{:position [(/ width 4) (/ height 2)] :velocity [1 1]}]
+                                        ;ODER SO ANFANGEN?   :lasers {:position [0 0], :angle 0}
+; GANZE VM STUERZT AB:
+;                 :lasers (take 3 (repeatedly (fn [] {:position [(/ width 2) (/ height 2)]
+;                                            :velocity [1 1]
+;                                            :size 5})))
                  :asteroids (take 3 (repeatedly (fn [] {:position [(rand-int width) (rand-int height)]
-                                                        :velocity [(rand-int 10) (rand-int 10)]
-                                                        :size 20})))
+                                                       :velocity [(rand-int 10) (rand-int 10)]
+                                                       :size 20})))
                  :stars (take 100 (repeatedly (fn [] [(rand-int width) (rand-int height)])))
                  :buttons #{}}))
 

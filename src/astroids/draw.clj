@@ -26,7 +26,10 @@
   (into [] (map #(* s %) v)))
 
 (defn lasers [state]
-  (doseq [{[x y] :position dv :velocity} (:lasers state)
+  #_(doseq [{[x y] :position [dx dy] :velocity} (:lasers state)]
+      (quil/line x y dx dy))
+
+    (doseq [{[x y] :position dv :velocity} (:lasers state)
           :let [vshape -3
                 [dx dy] (skpr vshape (norm dv))]]
     (quil/line x y dx dy))

@@ -17,10 +17,6 @@
                           :velocity [0 0]}
                   :lasers []  ; :position and velocity
 
-; GANZE VM STUERZT AB:
-;                 :lasers (take 3 (repeatedly (fn [] {:position [(/ width 2) (/ height 2)]
-;                                            :velocity [1 1]
-;                                            :size 5})))
                  :asteroids (take 3 (repeatedly (fn [] {:position [(rand-int width) (rand-int height)]
                                                        :velocity [(rand-int 10) (rand-int 10)]
                                                        :size 20})))

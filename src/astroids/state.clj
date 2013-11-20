@@ -24,7 +24,7 @@
            (fn [~name] ~trans)]) ds))
 
 (defn create-laser [[xpos ypos] angle]
-  (println xpos ypos angle "<-----")
+  #_(println xpos ypos angle "<-----")
   {:position [xpos ypos] :velocity (map (partial * 10) [(Math/cos angle) (Math/sin angle)])}
   )
 

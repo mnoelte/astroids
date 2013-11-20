@@ -2,6 +2,7 @@
   (:require [quil.core :as quil]
             [clojure.math.numeric-tower :as math]))
 
+(alter-var-root #'*out* (constantly *out*))
 (defn world [state]
   (quil/background 0)
   (dorun (map (partial apply quil/point) (:stars state)))
@@ -26,18 +27,14 @@
   (into [] (map #(* s %) v)))
 
 (defn lasers [state]
-  #_(doseq [{[x y] :position [dx dy] :velocity} (:lasers state)]
-      (quil/line x y dx dy))
-
-    (doseq [{[x y] :position dv :velocity} (:lasers state)
-          :let [vshape -3
-                [dx dy] (skpr vshape (norm dv))]]
-    (quil/line x y dx dy))
+  (doseq [{[x y] :position [dx dy] :velocity} (:lasers state)]
+    #_(prn "draw laser " x y dx dy)
+    (quil/line x y (+ x dx) (+ y dy)))
   state)
 
 (defn asteroids [state]
   (doseq [{[x y] :position size :size} (:asteroids state)]
     (quil/with-translation [x y]
-      (quil/with-rotation [(quil/radians (/ (quil/millis) 10))]
+      (quil/with-rotation [(quil/radians (/ (quil/millis) 6))]
         (quil/rect 0 0 size size))))
   state)

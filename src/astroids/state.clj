@@ -23,10 +23,25 @@
          `[(fn [~name] ~pred)
            (fn [~name] ~trans)]) ds))
 
+(defn create-laser [[xpos ypos] angle]
+  (println xpos ypos angle "<-----")
+  {:position [xpos ypos] :velocity (map (partial * 10) [(Math/cos angle) (Math/sin angle)])}
+  )
+
+(defn add-laser [state lasers]
+                                        ; create new laser
+                                        ;  transfer ship position
+                                        ;  transfer angle
+                                        ; add laser to lasers
+
+  (->> (create-laser (get-in state [:player :position]) (get-in state [:player :angle]))
+       (conj lasers))
+  )
+
 (deftrans trans  [state]
   [[((:buttons state) :right)  (update state [:player :angle]  #(+ 0.1 %))]
    [((:buttons state) :left) (update state [:player :angle]  #(+ 6.182 %))]
-   [((:buttons state) :space) (update state [:lasers :angle]  #(+ 6.182 %))]
+   [((:buttons state) :space) (update state [:lasers] #(add-laser state %)  )]
    [((:buttons state) :up)
     (assoc-in state [:player :velocity]
               (mapv + (mapv * [0.1 0.1] [(Math/cos (:angle (:player state)))
@@ -84,8 +99,12 @@
       move-ship
       set-velocity))
 
+(defn update-laser [laser]
+  (assoc laser :position (mapv + (:position laser) (:velocity laser)) )
+  )
+
 (defn lasers [state]
-  state)
+  (update state [:lasers] #(map update-laser %)))
 
 (defn asteroids [state]
   state)

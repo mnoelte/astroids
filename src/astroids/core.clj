@@ -15,11 +15,8 @@
 (def game (atom {:player {:position [(/ width 2) (/ height 2)]
                           :angle 0
                           :velocity [0 0]}
-                  :lasers []
+                  :lasers []  ; :position and velocity
 
-; X STUERZT AB:
-;                 :lasers [{:position [(/ width 4) (/ height 2)] :velocity [1 1]}]
-                                        ;ODER SO ANFANGEN?   :lasers {:position [0 0], :angle 0}
 ; GANZE VM STUERZT AB:
 ;                 :lasers (take 3 (repeatedly (fn [] {:position [(/ width 2) (/ height 2)]
 ;                                            :velocity [1 1]
